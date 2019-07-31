@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Minesweeper in JS</title>
+	<link href="https://fonts.googleapis.com/css?family=Righteous|Source+Code+Pro&display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
 
+	<style type="text/css">
+		.displayText{
+			text-align: center;
+			font-family: 'Source Code Pro', monospace;
+
+		}
+		#startBtn{
+			display: block;
+			margin-left: auto;
+   	 		margin-right: auto;
+			background-color: green;
+			font-family: 'Righteous', cursive;
+			font-size: 40px;
+			border-radius: 16px;
+			color:white;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="displayText" >
+		<h1>Hello this is a JS version of minesweeper</h1>
+		<p style="padding-right: 50px; display: inline-block;">Number of rows:<input type="Number" id="rowNum"></p>
+		<p style="display: inline-block;">Number of columns:<input type="Number" id="colNum"></p>
+	</div>
+	<button id="startBtn">START</button>
+	<table id="gameBoard" style=" width: 80%">
+
+	</table>
+
+	
+	<script type="text/javascript">
+		var gameBoard =[];
+		document.getElementById("startBtn").addEventListener("click", function(){
+				gameBoard=[];
+
+  				var columns=document.getElementById('colNum').value;
+  				var rows= document.getElementById("rowNum").value;
+  				if (columns == 0|| rows==0||Math.ceil(rows)!=rows||Math.ceil(columns)!=columns) {
+  					alert("row and column values have to be a whole number greater than 0");
+  					return;
+  				
+  				}
+  				createBoard(columns,rows);
+  				document.getElementById("startBtn").innerHTML="Retry";
+
+		});
+		function createBoard(col,row) {
+			//creating the two D list
+			//create a row then repeat that row again row(parameter ^^) number of times
+			var psuedoRow=[];
+			for (var c = 1; c <= col; c++) {
+				psuedoRow.push("");
+			}
+			for (var r=1; r <= row; r++) {
+				gameBoard.push(psuedoRow);
+			}
+			console.log(gameBoard);
+
+			//attempted to create gameboard from html elements
+			// for (var i = 0; i<=col; i++) {
+			// 	var row = document.createElement("tr");
+			// 	var column = document.createElement('th');
+			// 	var rowTxt = document.createTextNode("Bomb");
+			// 	var colTxt = document.createTextNode('not bommb')
+			// 	row.appendChild(rowTxt);
+			// 	column.appendChild(colTxt);
+			// 	row.appendChild(column);
+			// 	var element = document.getElementById("gameBoard");
+			// 	element.appendChild(row);
+			
+			// }
+
+
+		}
+		function setup() {
+		  createCanvas(640, 480);
+		}
+
+		function draw() {
+			
+		}
+	</script>
+</body>
+</html>
